@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog">
+    <changeSet id="create-purchase-table" author="Yoana Stefanova" runOnChange="true">
+        <createTable tableName="purchases">
+            <!-- TODO -->
+            <column name="uuid" type="VARCHAR(36)">
+                <constraints primaryKey="true" unique="true" nullable="false"
+                />
+            </column>
+            <column name="name" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DOUBLE">
+                <constraints/>
+            </column>
+            <column name="change" type="DOUBLE">
+                <constraints/>
+            </column>
+            <column name="itemType" type="ENUM('CASH','CARD')">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="purchases" baseColumnNames="supermarket_id"
+                                 constraintName="purchases_constraint" referencedTableName="supermarket"
+                                 referencedColumnNames="uuid"/>
+    </changeSet>
+</databaseChangeLog>
